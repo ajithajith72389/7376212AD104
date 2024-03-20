@@ -8,7 +8,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/Top_N_Product');
+mongoose.connect('mongodb://127.0.0.1:27017/Top_N_Product');
 
 app.get('/', (req, res) => {
     ProductModel.find()
@@ -60,7 +60,7 @@ app.post('/products/login', (req, res) => {
                 bcrypt.compare(accessCode, user.accessCode, (err, response) => {
                     if (response) {
                         const token = jwt.sign({ ownerEmail: user.ownerEmail, role: user.role },
-                            "jwt-secret-key", { expiresIn: '1d' })
+                             { expiresIn: '1710835268' })
                         res.cookie('token', token)
                         return res.json({ Status: "Success", role: user.role })
                     } else {
